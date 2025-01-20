@@ -1,10 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Todo } from './useTodos';
-import axios from 'axios';
+import todoService from '../react-query/services/todoService';
 import { CACHE_KEY_TODOS } from '../react-query/constants';
 import APIClient from '../react-query/services/apiClient';
-
-const apiClient = new APIClient<Todo>('/todos');
+import { Todo } from '../react-query/services/todoService';
 
 interface AddTodoContext {
   previousTodos: Todo[];
@@ -14,7 +12,7 @@ const useAddTodo = (onAdd: () => void) => {
   const queryClient = useQueryClient();
 
   return useMutation<Todo, Error, Todo, AddTodoContext>({
-    mutationFn: apiClient.post,
+    mutationFn: todoService.post,
     onMutate: (newTodo: Todo) => {
       const previousTodos =
         queryClient.getQueryData<Todo[]>(CACHE_KEY_TODOS) || [];
