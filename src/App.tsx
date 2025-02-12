@@ -1,10 +1,9 @@
 import { useReducer } from 'react';
 import './App.css';
-import TaskList from './state-management/TaskList';
-import tasksReducer from './state-management/reducers/tasksReducer';
-import NavBar from './routing/NavBar';
-import HomePage from './routing/HomePage';
 import TasksContext from './state-management/context/tasksContext';
+import HomePage from './state-management/HomePage';
+import NavBar from './state-management/NavBar';
+import tasksReducer from './state-management/reducers/tasksReducer';
 
 function App() {
   const [tasks, dispatch] = useReducer(tasksReducer, []);
